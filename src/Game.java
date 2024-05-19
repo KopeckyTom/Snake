@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
-
+import java.util.Timer;
 
 public class Game extends JFrame  {
     JLabel labelChar = new JLabel();
@@ -15,11 +15,11 @@ public class Game extends JFrame  {
     private static final int tilesSizeX = 50;
     private static final int tilesSizeY = 50;
     private static final int jump = 50;
-
+    private int currentSpeed;
     MyKeyListener myKeyListener = new MyKeyListener();
     JPanel panelBody = new JPanel();
     List<Tile> tiles = new ArrayList<>();
-
+    Timer timer = new Timer();
     Random r = new Random();
     Tile head = new Tile();
     Tile apple = new Tile();
@@ -62,6 +62,42 @@ public class Game extends JFrame  {
         this.setTitle("SNAKE");
 
 
+        for (int i = 0; i < tilesY;i++){
+            for (int j = 0; j < tilesX;j++){
+
+                ImageIcon grass1 = new ImageIcon("images//grass_1.png");
+                ImageIcon grass2 = new ImageIcon("images//grass_2.png");
+                ImageIcon grass3 = new ImageIcon("images//grass_3.png");
+                ImageIcon grass4 = new ImageIcon("images//grass_4.png");
+
+                JLabel labelGrass = new JLabel();
+
+                int grass = r.nextInt(4);
+                switch (grass){
+                    case 0:
+                        labelGrass.setIcon(grass1);
+                        break;
+                    case 1:
+                        labelGrass.setIcon(grass2);
+                        break;
+                    case 2:
+                        labelGrass.setIcon(grass3);
+                        break;
+                    case 3:
+                        labelGrass.setIcon(grass4);
+                        break;
+                }
+
+                Tile tile = new Tile(i*tilesSizeX,j*tilesSizeY);
+                tile.setOpaque(false);
+                tile.add(labelGrass);
+                tiles.add(tile);
+                this.add(tile);
+                this.repaint();
+
+            }
+        }
+
         head.setLayout(null);
         head.add(labelChar);
         head.setOpaque(false);
@@ -69,6 +105,13 @@ public class Game extends JFrame  {
         apple.setLayout(null);
         apple.add(labelFood);
         apple.setOpaque(false);
+
+    }
+
+    public void start(){
+
+        head.setBounds(tiles.get(r.nextInt(tiles.size())).getBounds());
+        apple.setBounds(tiles.get(r.nextInt(tiles.size())).getBounds());
 
     }
 
@@ -108,6 +151,33 @@ public class Game extends JFrame  {
 
         end();
     }
+
+    public void setFood(ImageIcon food){
+
+        labelFood.setIcon(food);
+
+    }
+
+    public void setCharacter(ImageIcon character){
+
+        labelChar.setIcon(character);
+
+    }
+
+    public void setBody(ImageIcon body){
+
+        bodyImage = new ImageIcon(body.getImage());
+
+    }
+
+    public int getCurrentSpeed() {
+        return currentSpeed;
+    }
+
+    public void setCurrentSpeed(int currentSpeed) {
+        this.currentSpeed = currentSpeed;
+    }
+
     public void newApple(){
         scorePoints++;
         boolean done = true;
@@ -154,17 +224,22 @@ public class Game extends JFrame  {
             for (int i = 0; i < body.size(); i++) {
                 if (head.getLocation().equals(body.get(i).getLocation())) {
                     this.dispose();
+                    timer.cancel();
 
                 }
             }
         }
 
-        if (head.getX() >= width-50 || head.getX() < 0 || head.getY() >= height-50 || head.getY() < 0) {
+        if (head.getX() >= width-50 || head.getX() < 0 || head.getY() >= height-50 || head.getY() < 0){
             this.dispose();
+            timer.cancel();
+
         }
 
         if (scorePoints == 399){
             this.dispose();
+            timer.cancel();
+
         }
     }
 
@@ -179,4 +254,3 @@ public class Game extends JFrame  {
     }
 
 }
-
