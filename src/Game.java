@@ -225,7 +225,7 @@ public class Game extends JFrame  {
                 if (head.getLocation().equals(body.get(i).getLocation())) {
                     this.dispose();
                     timer.cancel();
-
+                    EndFrame endFrame = new EndFrame();
                 }
             }
         }
@@ -233,13 +233,13 @@ public class Game extends JFrame  {
         if (head.getX() >= width-50 || head.getX() < 0 || head.getY() >= height-50 || head.getY() < 0){
             this.dispose();
             timer.cancel();
-
+            EndFrame endFrame = new EndFrame();
         }
 
         if (scorePoints == 399){
             this.dispose();
             timer.cancel();
-
+            EndFrame endFrame = new EndFrame();
         }
     }
 

@@ -15,6 +15,8 @@ public class SelectChar extends JFrame implements ActionListener{
     JButton right1 = new JButton();
     JButton left2 = new JButton();
     JButton right2 = new JButton();
+    ImageIcon backGround = new ImageIcon("images//Char_Background.png");
+    JLabel backGroundLabel = new JLabel();
     List<ImageIcon> characters;
     List<ImageIcon> bodys;
     List<ImageIcon> foods;
@@ -183,6 +185,10 @@ public class SelectChar extends JFrame implements ActionListener{
         continueButton.setBorder(new LineBorder(Color.BLACK));
         this.add(continueButton);
 
+
+        backGroundLabel.setBounds(0,0,width,height);
+        backGroundLabel.setIcon(backGround);
+        this.add(backGroundLabel);
     }
 
 
@@ -267,4 +273,3 @@ public class SelectChar extends JFrame implements ActionListener{
 
     }
 }
-
