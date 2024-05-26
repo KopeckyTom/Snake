@@ -203,6 +203,7 @@ public class SelectChar extends JFrame implements ActionListener{
             Game game = new Game();
             game.start();
             this.dispose();
+            game.highestScore.fileRW.setScore(game.highestScore.label);
             game.setFood(foods.get(currentApple));
             game.setCharacter(characters.get(currentChar));
             game.setBody(bodys.get(currentChar));

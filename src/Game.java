@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Timer;
 
 public class Game extends JFrame  {
+    HighestScore highestScore = new HighestScore();
     JLabel labelChar = new JLabel();
     JLabel  labelFood = new JLabel();
     List<Tile> body = new ArrayList<>();
@@ -180,6 +181,7 @@ public class Game extends JFrame  {
 
     public void newApple(){
         scorePoints++;
+        highestScore.score.setScore(scorePoints);
         boolean done = true;
         apple.setLocation(tiles.get(r.nextInt(tilesX * tilesY)).getLocation());
         if (!body.isEmpty()) {
@@ -224,6 +226,9 @@ public class Game extends JFrame  {
             for (int i = 0; i < body.size(); i++) {
                 if (head.getLocation().equals(body.get(i).getLocation())) {
                     this.dispose();
+                    highestScore.fileRW.writeScore(scorePoints);
+                    highestScore.score.dispose();
+                    highestScore.dispose();
                     timer.cancel();
                     EndFrame endFrame = new EndFrame();
                 }
@@ -232,12 +237,18 @@ public class Game extends JFrame  {
 
         if (head.getX() >= width-50 || head.getX() < 0 || head.getY() >= height-50 || head.getY() < 0){
             this.dispose();
+            highestScore.fileRW.writeScore(scorePoints);
+            highestScore.score.dispose();
+            highestScore.dispose();
             timer.cancel();
             EndFrame endFrame = new EndFrame();
         }
 
         if (scorePoints == 399){
             this.dispose();
+            highestScore.fileRW.writeScore(scorePoints);
+            highestScore.score.dispose();
+            highestScore.dispose();
             timer.cancel();
             EndFrame endFrame = new EndFrame();
         }
