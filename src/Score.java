@@ -32,6 +32,10 @@ public class Score extends JFrame {
         this.add(backGroundLabel);
     }
 
+    /**
+     * This method sets text of the label
+     * @param score
+     */
     public void setScore(int score){
         label.setText("score: " + score);
     }

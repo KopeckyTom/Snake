@@ -109,6 +109,9 @@ public class Game extends JFrame  {
 
     }
 
+    /**
+     *  This method sets starting position of head and apple
+     */
     public void start(){
 
         head.setBounds(tiles.get(r.nextInt(tiles.size())).getBounds());
@@ -116,6 +119,9 @@ public class Game extends JFrame  {
 
     }
 
+    /**
+     * This method moves the head of the snake and sets location of the head before the move and calling other methods
+     */
     public void update(){
 
         head.setLastLocation(head.getLocation().x,head.getLocation().y);
@@ -153,32 +159,56 @@ public class Game extends JFrame  {
         end();
     }
 
+    /**
+     * This method sets image of the apple
+     * @param food
+     */
     public void setFood(ImageIcon food){
 
         labelFood.setIcon(food);
 
     }
 
+    /**
+     * This method sets image of the head
+     * @param character
+     */
     public void setCharacter(ImageIcon character){
 
         labelChar.setIcon(character);
 
     }
 
+    /**
+     * This method sets image of the body
+     * @param body
+     */
     public void setBody(ImageIcon body){
 
         bodyImage = new ImageIcon(body.getImage());
 
     }
 
+    /**
+     * This method gets the value of the int
+     * @return
+     */
     public int getCurrentSpeed() {
         return currentSpeed;
     }
 
+    /**
+     * This method sets the value of the int
+     * @param currentSpeed
+     */
     public void setCurrentSpeed(int currentSpeed) {
         this.currentSpeed = currentSpeed;
     }
 
+
+    /**
+     * This method spawns new apple and sets new current score
+     */
     public void newApple(){
         scorePoints++;
         highestScore.score.setScore(scorePoints);
@@ -197,6 +227,9 @@ public class Game extends JFrame  {
         }
     }
 
+    /**
+     * This method spawns new body part
+     */
     public void nextScore(){
 
         newApple();
@@ -220,7 +253,9 @@ public class Game extends JFrame  {
 
     }
 
-
+    /**
+     * This method detects when it is end of the game
+     */
     public void end(){
         if (body.size()>2){
             for (int i = 0; i < body.size(); i++) {
@@ -254,6 +289,9 @@ public class Game extends JFrame  {
         }
     }
 
+    /**
+     * This method moves the body parts
+     */
     public void bodyPartMove(){
         body.get(0).setLocation(head.getLastX(), head.getLastY());
         for (int i = 1; i < body.size();i++){
