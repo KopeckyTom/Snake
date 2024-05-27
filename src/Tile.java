@@ -35,4 +35,3 @@ public class Tile extends JPanel {
         return lastY;
     }
 }
-

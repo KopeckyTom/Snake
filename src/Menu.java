@@ -16,6 +16,7 @@ public class Menu extends JFrame implements ActionListener {
 
     JButton quit = new JButton();
     JButton play = new JButton();
+    JButton scoreboardbutton = new JButton();
 
     Menu(){
         this.setSize(width,height);
@@ -50,6 +51,18 @@ public class Menu extends JFrame implements ActionListener {
         play.setBorder(new LineBorder(Color.BLACK));
         this.add(play);
 
+        scoreboardbutton.setBounds(100,200,buttonWidth,buttonHeight);
+        scoreboardbutton.addActionListener(this);
+        scoreboardbutton.setText("scoreboard");
+        scoreboardbutton.setFont(new Font("Distant Galaxy", Font.BOLD, 30));
+        scoreboardbutton.setForeground(new Color(0, 0, 0));
+        scoreboardbutton.setBackground(new Color(0, 0, 0));
+        scoreboardbutton.setBorderPainted(true);
+        scoreboardbutton.setContentAreaFilled(false);
+        scoreboardbutton.setFocusPainted(false);
+        scoreboardbutton.setBorder(new LineBorder(Color.BLACK));
+        this.add(scoreboardbutton);
+
         backGroundLabel.setBounds(0,0,width,height);
         backGroundLabel.setIcon(backGround);
         this.add(backGroundLabel);
@@ -72,6 +85,13 @@ public class Menu extends JFrame implements ActionListener {
 
         }
 
+        if (e.getSource().equals(scoreboardbutton)){
+
+            ScoreBoard scoreBoard = new ScoreBoard();
+            this.dispose();
+
+
+        }
 
     }
 }
