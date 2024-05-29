@@ -75,7 +75,7 @@ public class FileRW {
      * @param list
      * @return
      */
-    public static ArrayList<Integer> removeDuplicates(ArrayList<Integer> list) {
+    public ArrayList<Integer> removeDuplicates(ArrayList<Integer> list) {
         LinkedHashSet<Integer> set = new LinkedHashSet<>(list);
         return new ArrayList<>(set);
     }

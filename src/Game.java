@@ -302,4 +302,20 @@ public class Game extends JFrame  {
         panelBody.repaint();
     }
 
+    /**
+     * This method gets value of the int
+     * @return
+     */
+    public int getScorePoints() {
+        return scorePoints;
+    }
+
+    /**
+     * This method sets value of the int
+     * @param scorePoints
+     */
+
+    public void setScorePoints(int scorePoints) {
+        this.scorePoints = scorePoints;
+    }
 }
