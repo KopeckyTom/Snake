@@ -11,7 +11,7 @@ class FileRWTest {
     void getMaxScore() {
 
         FileRW fileRW = new FileRW();
-        assertEquals(fileRW.getMaxScore(),fileRW.getAllScoresArray().get(0));
+        assertEquals(fileRW.getAllScoresArray().get(0),fileRW.getMaxScore());
 
     }
 
